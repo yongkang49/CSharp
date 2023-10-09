@@ -10,43 +10,12 @@ namespace Conversione
     {
         static void Main(string[] args)
         {
-            int decimale = 0;
-            string bit;
-            bool[] binario = new bool[32];
-            Console.WriteLine("inserisci i bit");
-            bit = Console.ReadLine();
-            for (int i = 0; i < bit.Length; i++)
-            {
-
-                if (bit[i] == '1')
-                {
-                    binario[i] = true;
-                }
-            }
-            decimale = Convert_Binario_To_Intero(binario);
-            if (decimale == -1)
-            {
-                Console.WriteLine("4294967295");
-            }
-            else
-            {
-                Console.WriteLine(decimale);
-            }
-            int[] dp = new int[4];
-            for (int i = 0; i < dp.Length; i++)
-            {
-                Console.WriteLine($"inserisci la {i + 1} cifra in decimale puntato");
-                dp[i] = Convert.ToInt16(Console.ReadLine());
-            }
-            decimale = Convert_Decimale_Puntato_To_Intero(dp);
-            if (decimale == -1)
-            {
-                Console.WriteLine("4294967295");
-            }
-            else
-            {
-                Console.WriteLine(decimale);
-            }
+           //*********************************
+            bool[] b = new bool[] { true, true, true, true, true, true, true, true, true };
+            Console.WriteLine(Convert_Binario_To_Intero(b));
+            //*********************************
+            int[] dp = new int[] { 10, 10 };
+            Console.WriteLine(Convert_Decimale_Puntato_To_Intero(dp));
             Console.ReadLine();
         }
         static int Convert_Binario_To_Intero(bool[] b)
@@ -55,7 +24,7 @@ namespace Conversione
             int decimale = 0;
             for (int i = 0; i < b.Length; i++)
             {
-                decimale += Convert.ToInt16(b[i]) * (int)Math.Pow(2, i);
+                decimale += Convert.ToUInt16(b[b.Length - i - 1]) * (int)Math.Pow(2, i);
             }
             return decimale;
         }
@@ -64,7 +33,7 @@ namespace Conversione
             int decimale = 0;
             for (int i = 0; i < dp.Length; i++)
             {
-                decimale += dp[i] * (int)Math.Pow(256, i);
+                decimale += dp[dp.Length - i - 1] * (int)Math.Pow(256, i);
             }
             return decimale;
         }
